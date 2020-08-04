@@ -1,9 +1,16 @@
 pipeline {
-    agent { docker 'python:3.5.1-alpine' }
+    agent all
     stages {
-        stage('build') {
+        stage('Source') { // Get code
             steps {
-                sh 'python --version'
+                // get code from our git repository
+                git 'git@diyvb2:/home/git/repositories/workshop.git'
+            }
+        }
+        stage('Compile') { // Compile and do unit testing
+            steps {
+                // run gradle to execute compile and unit testing
+                sh "gradle clean compileJava test"
             }
         }
     }
