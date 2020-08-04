@@ -1,5 +1,5 @@
 pipeline {
-    agent all
+    agent any
     stages {
         stage('Source') { // Get code
             steps {
